@@ -35,8 +35,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        searchArtist: () => {
-            dispatch(searchArtist('Arctic'));
+        searchArtist: (term) => {
+            dispatch(searchArtist(term));
         }
     };
 };
