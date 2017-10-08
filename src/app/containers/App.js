@@ -15,7 +15,7 @@ class App extends React.Component {
                     <Header/>
                     <Route exact path={'/'} component={LikedAlbums}/>
                     <Route path={'/likedalbums'} component={LikedAlbums}/>
-                    <Route path={'/search'} render={()=><Search searchArtist={this.props.searchArtist}/>}/>
+                    <Route path={'/search'} render={()=><Search searchArtist={this.props.searchArtist} artists={this.props.api.artists}/>}/>
                 </div>
             </BrowserRouter>
         );
@@ -24,6 +24,7 @@ class App extends React.Component {
 
 App.propTypes = {
     searchArtist: PropTypes.func,
+    api: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
@@ -35,7 +36,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         searchArtist: () => {
-            dispatch(searchArtist('Skrillex'));
+            dispatch(searchArtist('Arctic'));
         }
     };
 };

@@ -1,7 +1,7 @@
 const initialState = {
     fetching: false,
     fetched: false,
-    artists: [],
+    artists: null,
     error: null
 };
 
