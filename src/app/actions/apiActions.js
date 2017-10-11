@@ -12,3 +12,16 @@ export function searchArtist(term) {
             });
     };
 }
+
+export function getArtistsAlbums(artistId) {
+    return dispatch => {
+        dispatch({type: 'FETCH_ARTISTS_ALBUMS_START'});
+        axios.get('https://itunes.apple.com/lookup?id=' + artistId + '&entity=album')
+            .then((response) => {
+                dispatch({type: 'RECEIVE_ARTISTS_ALBUMS', payload: response.data});
+            })
+            .catch((error) => {
+                dispatch({type: 'FETCH_ARTISTS_ALBUMS_ERROR', payload: error});
+            });
+    };
+}
