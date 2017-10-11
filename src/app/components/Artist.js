@@ -3,7 +3,7 @@ import React from 'react';
 
 export class Artist extends React.Component {
     componentWillMount() {
-        this.props.getArtistsAlbums(this.props.match.params.artistId);
+        this.props.searchArtistsAlbums(this.props.match.params.artistId);
     }
 
     render() {

@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Header } from '../components/Header';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { LikedAlbums } from '../components/LikedAlbums';
-import { Search } from '../components/search/Search';
-import { searchArtist, getArtistsAlbums } from '../actions/apiActions';
+import { Search } from '../components/Search';
+import { searchArtist } from '../actions/restApiArtistsActions';
+import { searchArtistsAlbums } from '../actions/restApiAlbumsActions';
 import PropTypes from 'prop-types';
 import { Artist } from '../components/Artist';
 
@@ -16,8 +17,20 @@ class App extends React.Component {
                     <Header/>
                     <Route exact path={'/'} component={LikedAlbums}/>
                     <Route path={'/likedalbums'} component={LikedAlbums}/>
-                    <Route path={'/search'} render={()=><Search searchArtist={this.props.searchArtist} artists={this.props.api.artists}/>}/>
-                    <Route path={'/artist/:artistId'} render={props=><Artist {...props} getArtistsAlbums={this.props.getArtistsAlbums} albums={this.props.api.albums} />}/>
+                    <Route path={'/search'} render={
+                        ()=><Search
+                            searchArtist={this.props.searchArtist}
+                            artists={this.props.artistsReducer.artists}
+                            albums={this.props.albumsReducer.albums}
+                        />
+                    }/>
+                    <Route path={'/artist/:artistId'} render={
+                        (props)=><Artist
+                            {...props}
+                            searchArtistsAlbums={this.props.searchArtistsAlbums}
+                            albums={this.props.albumsReducer.albums}
+                        />
+                    }/>
                 </div>
             </BrowserRouter>
         );
@@ -26,13 +39,15 @@ class App extends React.Component {
 
 App.propTypes = {
     searchArtist: PropTypes.func,
-    getArtistsAlbums: PropTypes.func,
-    api: PropTypes.object
+    searchArtistsAlbums: PropTypes.func,
+    artistsReducer: PropTypes.object,
+    albumsReducer: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
     return {
-        api: state.apiReducer
+        artistsReducer: state.restApiArtistsReducer,
+        albumsReducer: state.restApiAlbumsReducer
     };
 };
 
@@ -41,8 +56,8 @@ const mapDispatchToProps = (dispatch) => {
         searchArtist: (term) => {
             dispatch(searchArtist(term));
         },
-        getArtistsAlbums: (artistId) => {
-            dispatch(getArtistsAlbums(artistId));
+        searchArtistsAlbums: (artistId) => {
+            dispatch(searchArtistsAlbums(artistId));
         }
     };
 };
