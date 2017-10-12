@@ -1,10 +1,19 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { SearchItem } from './SearchItem';
 
 export class Search extends React.Component {
     render() {
+        let searchItems = this.props.artists ? this.props.artists.results.map((artist) => {
+            return(
+                <SearchItem
+                    key={artist.artistId}
+                    artistId={artist.artistId}
+                    artistName={artist.artistName}
+                />
+            );}) : (<p>no results</p>);
+
         return (
             <div>
                 <h1>SEARCH COMPONENT</h1>
@@ -12,12 +21,7 @@ export class Search extends React.Component {
                     <input type="text" name="name" onChange={(e) => this.props.searchArtist(e.target.value)}/>
                 </label>
                 <ul>
-                    {this.props.artists ? (
-                        this.props.artists.results.map((artist) =>
-                            <li key={artist.artistId}>
-                                <Link to={`/artist/${artist.artistId}`}>{artist.artistName}</Link>
-                            </li>)
-                    ) : (<p>no results</p>)}
+                    {searchItems}
                 </ul>
             </div>
         );
