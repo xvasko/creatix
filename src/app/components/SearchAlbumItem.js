@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-export const ArtistItem = (props) => {
+export const SearchAlbumItem = (props) => {
     return (
         <li>
-            {props.albumName}
+            {props.albumId}: {props.albumName}
         </li>
     );
 };
