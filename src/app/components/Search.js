@@ -19,6 +19,8 @@ export class Search extends React.Component {
                 artistId={this.props.artistId}
                 searchReducer={this.props.searchReducer}
                 showAlbums={this.props.showAlbums}
+                likedAlbumsIds={this.props.likedAlbumsIds}
+                likeAlbum={this.props.likeAlbum} dislikeAlbum={this.props.dislikeAlbum}
             />);
         }
     }

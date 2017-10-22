@@ -5,9 +5,10 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { LikedAlbums } from '../components/LikedAlbums';
 import { Search } from '../components/Search';
 import { searchArtist } from '../actions/restApiArtistsActions';
-import { searchArtistsAlbums } from '../actions/restApiAlbumsActions';
+import { searchArtistsAlbums, getLikedAlbums } from '../actions/restApiAlbumsActions';
 import { showAlbums } from '../actions/searchActions';
 import PropTypes from 'prop-types';
+import { likeAlbum, dislikeAlbum } from '../actions/albumActions';
 
 class App extends React.Component {
     render() {
@@ -15,8 +16,14 @@ class App extends React.Component {
             <BrowserRouter>
                 <div>
                     <Header/>
-                    <Route exact path={'/'} component={LikedAlbums}/>
-                    <Route path={'/likedalbums'} component={LikedAlbums}/>
+                    {/*<Route exact path={'/'} component={LikedAlbums}/>*/}
+                    <Route path={'/likedalbums'} render={
+                        ()=><LikedAlbums
+                            likedAlbumsIds={this.props.likedAlbumsReducer.likedAlbumsIds}
+                            getLikedAlbums={this.props.getLikedAlbums}
+                            albums={this.props.albumsReducer.albums}
+                        />}
+                    />
                     <Route path={'/search'} render={
                         ()=><Search
                             artists={this.props.artistsReducer.artists}
@@ -26,6 +33,8 @@ class App extends React.Component {
                             showAlbums={this.props.showAlbums}
                             searchReducer={this.props.searchReducer}
                             artistId={this.props.searchReducer.artistId}
+                            likedAlbumsIds={this.props.likedAlbumsReducer.likedAlbumsIds}
+                            likeAlbum={this.props.likeAlbum} dislikeAlbum={this.props.dislikeAlbum}
                         />
                     }/>
                 </div>
@@ -38,21 +47,29 @@ App.propTypes = {
     searchArtist: PropTypes.func,
     searchArtistsAlbums: PropTypes.func,
     showAlbums: PropTypes.func,
+    likeAlbum: PropTypes.func,
+    dislikeAlbum: PropTypes.func,
+    getLikedAlbums: PropTypes.func,
     artistsReducer: PropTypes.object,
     albumsReducer: PropTypes.object,
-    searchReducer: PropTypes.object
+    searchReducer: PropTypes.object,
+    likedAlbumsReducer: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
     return {
         artistsReducer: state.restApiArtistsReducer,
         albumsReducer: state.restApiAlbumsReducer,
-        searchReducer: state.searchReducer
+        searchReducer: state.searchReducer,
+        likedAlbumsReducer: state.likedAlbumsReducer
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getLikedAlbums: (likedAlbums) => {
+            dispatch(getLikedAlbums(likedAlbums));
+        },
         searchArtist: (term) => {
             dispatch(searchArtist(term));
         },
@@ -61,7 +78,14 @@ const mapDispatchToProps = (dispatch) => {
         },
         showAlbums: (isShowing, artistId, artistName) => {
             dispatch(showAlbums(isShowing, artistId, artistName));
-        }
+        },
+        likeAlbum: (albumId) => {
+            dispatch(likeAlbum(albumId));
+        },
+        dislikeAlbum: (albumId) => {
+            dispatch(dislikeAlbum(albumId));
+        },
+
     };
 };
 

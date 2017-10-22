@@ -14,10 +14,11 @@ export class SearchAlbum extends React.Component {
                     key={album.collectionId}
                     albumId={album.collectionId}
                     albumName={album.collectionName}
+                    likedAlbumsIds={this.props.likedAlbumsIds}
+                    likeAlbum={this.props.likeAlbum} dislikeAlbum={this.props.dislikeAlbum}
                 />
             );
         }) : (<p>no albums...</p>);
-
         return (
             <div>
                 <h1>SEARCH ALBUM COMPONENT</h1>
