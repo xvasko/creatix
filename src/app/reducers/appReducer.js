@@ -8,5 +8,5 @@ export const appReducer = combineReducers({
     restApiArtistsReducer,
     restApiAlbumsReducer,
     searchReducer,
-    likedAlbumsReducer: albumReducer,
+    albumReducer,
 });

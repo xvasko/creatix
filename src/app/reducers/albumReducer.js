@@ -1,5 +1,6 @@
 const initialState = {
-    likedAlbumsIds: []
+    likedAlbumsIds: [],
+    showAlbumDetails: null,
 };
 
 const albumReducer = (state = initialState, action) => {
@@ -14,6 +15,18 @@ const albumReducer = (state = initialState, action) => {
             likedAlbumsIds: [...state.likedAlbumsIds]
         };
         state.likedAlbumsIds.splice(state.likedAlbumsIds.indexOf(action.payload.albumId), 1);
+        break;
+    case 'SHOW_ALBUM_DETAILS':
+        state = {
+            ...state,
+            showAlbumDetails: action.payload.albumId
+        };
+        break;
+    case 'HIDE_ALBUM_DETAILS':
+        state = {
+            ...state,
+            showAlbumDetails: null
+        };
         break;
     }
     return state;

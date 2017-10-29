@@ -15,3 +15,18 @@ export function dislikeAlbum(albumId) {
         }
     };
 }
+
+export function showAlbumDetails(albumId) {
+    return {
+        type: 'SHOW_ALBUM_DETAILS',
+        payload: {
+            albumId: albumId
+        }
+    };
+}
+
+export function hideAlbumDetails() {
+    return {
+        type: 'HIDE_ALBUM_DETAILS',
+    };
+}

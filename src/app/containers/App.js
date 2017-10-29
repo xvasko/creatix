@@ -8,7 +8,7 @@ import { searchArtist } from '../actions/restApiArtistsActions';
 import { searchArtistsAlbums, getLikedAlbums } from '../actions/restApiAlbumsActions';
 import { showAlbums } from '../actions/searchActions';
 import PropTypes from 'prop-types';
-import { likeAlbum, dislikeAlbum } from '../actions/albumActions';
+import { likeAlbum, dislikeAlbum, showAlbumDetails, hideAlbumDetails } from '../actions/albumActions';
 
 class App extends React.Component {
     render() {
@@ -19,9 +19,10 @@ class App extends React.Component {
                     {/*<Route exact path={'/'} component={LikedAlbums}/>*/}
                     <Route path={'/likedalbums'} render={
                         ()=><LikedAlbums
-                            likedAlbumsIds={this.props.likedAlbumsReducer.likedAlbumsIds}
+                            likedAlbumsReducer={this.props.likedAlbumsReducer}
                             getLikedAlbums={this.props.getLikedAlbums}
                             albumsReducer={this.props.albumsReducer}
+                            showAlbumDetails={this.props.showAlbumDetails} hideAlbumDetails={this.props.hideAlbumDetails}
                         />}
                     />
                     <Route path={'/search'} render={
@@ -50,6 +51,8 @@ App.propTypes = {
     likeAlbum: PropTypes.func,
     dislikeAlbum: PropTypes.func,
     getLikedAlbums: PropTypes.func,
+    showAlbumDetails: PropTypes.func,
+    hideAlbumDetails: PropTypes.func,
     artistsReducer: PropTypes.object,
     albumsReducer: PropTypes.object,
     searchReducer: PropTypes.object,
@@ -61,7 +64,7 @@ const mapStateToProps = (state) => {
         artistsReducer: state.restApiArtistsReducer,
         albumsReducer: state.restApiAlbumsReducer,
         searchReducer: state.searchReducer,
-        likedAlbumsReducer: state.likedAlbumsReducer
+        likedAlbumsReducer: state.albumReducer
     };
 };
 
@@ -84,6 +87,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         dislikeAlbum: (albumId) => {
             dispatch(dislikeAlbum(albumId));
+        },
+        showAlbumDetails: (albumId) => {
+            dispatch(showAlbumDetails(albumId));
+        },
+        hideAlbumDetails: () => {
+            dispatch(hideAlbumDetails());
         },
     };
 };
