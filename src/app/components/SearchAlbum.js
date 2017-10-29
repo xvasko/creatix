@@ -8,7 +8,7 @@ export class SearchAlbum extends React.Component {
     }
 
     render () {
-        let searchAlbumItems = this.props.albums ? this.props.albums.results.filter(album => album.collectionId).map((album) => {
+        let searchAlbumItems = this.props.albumsReducer.albums ? this.props.albumsReducer.albums.results.filter(album => album.collectionId).map((album) => {
             return (
                 <SearchAlbumItem
                     key={album.collectionId}
@@ -19,11 +19,14 @@ export class SearchAlbum extends React.Component {
                 />
             );
         }) : (<p>no albums...</p>);
+
+        let isLoading = !this.props.albumsReducer.fetching ? <ul>{searchAlbumItems}</ul> : <h2>Loading...</h2>;
+
         return (
             <div>
                 <h1>SEARCH ALBUM COMPONENT</h1>
                 <ul>
-                    {searchAlbumItems}
+                    {isLoading}
                 </ul>
                 <a href='#' onClick={() => this.props.showAlbums(false)}>back</a>
             </div>

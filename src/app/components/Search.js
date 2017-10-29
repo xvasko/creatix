@@ -8,13 +8,13 @@ export class Search extends React.Component {
     render() {
         if (!this.props.searchReducer.isShowingAlbums) {
             return(<SearchArtist
-                artists={this.props.artists}
+                artistsReducer={this.props.artistsReducer}
                 searchArtist={this.props.searchArtist}
                 showAlbums={this.props.showAlbums}
             />);
         } else {
             return(<SearchAlbum
-                albums={this.props.albums}
+                albumsReducer={this.props.albumsReducer}
                 searchArtistsAlbums={this.props.searchArtistsAlbums}
                 artistId={this.props.artistId}
                 searchReducer={this.props.searchReducer}

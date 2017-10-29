@@ -4,7 +4,7 @@ import { SearchArtistItem } from './SearchArtistItem';
 
 export class SearchArtist extends React.Component {
     render() {
-        let searchArtistItems = this.props.artists ? this.props.artists.results.map((artist) => {
+        let searchArtistItems = this.props.artistsReducer.artists ? this.props.artistsReducer.artists.results.map((artist) => {
             return (
                 <SearchArtistItem
                     key={artist.artistId}
@@ -19,7 +19,10 @@ export class SearchArtist extends React.Component {
             <div>
                 <h1>SEARCH ARTIST COMPONENT</h1>
                 <label>
-                    <input type="text" name="name" onChange={(e) => this.props.searchArtist(e.target.value)}/>
+                    <input type="text" name="name"
+                        value={this.props.artistsReducer.term}
+                        onChange={(e) => this.props.searchArtist(e.target.value)}
+                    />
                 </label>
                 <ul>
                     {searchArtistItems}

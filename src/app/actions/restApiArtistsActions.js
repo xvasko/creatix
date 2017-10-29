@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function searchArtist(term) {
     return dispatch => {
-        dispatch({type: 'FETCH_ARTISTS_START'});
+        dispatch({type: 'FETCH_ARTISTS_START', payload: {term: term}});
         axios.get('https://itunes.apple.com/search?term=' + term + '&entity=musicArtist')
             .then((response) => {
                 dispatch({type: 'RECEIVE_ARTISTS', payload: response.data});

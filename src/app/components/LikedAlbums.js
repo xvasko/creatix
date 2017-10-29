@@ -8,7 +8,7 @@ export class LikedAlbums extends React.Component {
     }
 
     render() {
-        let likedAlbums = this.props.likedAlbumsIds.length > 0 ? this.props.albums.results.map((likedAlbum) => {
+        let likedAlbums = this.props.likedAlbumsIds.length > 0 ? this.props.albumsReducer.albums.results.map((likedAlbum) => {
             return (
                 <LikedAlbumsItem
                     key={likedAlbum.collectionId}
@@ -17,13 +17,17 @@ export class LikedAlbums extends React.Component {
                 />
             );
         }) : (<p>you have no liked albums...</p>);
-        return (
-            <div>
-                <h1>LIKED ALBUMS COMPONENT</h1>
-                <ul>
-                    {likedAlbums}
-                </ul>
-            </div>
-        );
+        if(this.props.albumsReducer.fetching) {
+            return (<h2>Loading...</h2>);
+        } else {
+            return (
+                <div>
+                    <h1>LIKED ALBUMS COMPONENT</h1>
+                    <ul>
+                        {likedAlbums}
+                    </ul>
+                </div>
+            );
+        }
     }
 }

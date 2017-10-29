@@ -2,13 +2,14 @@ const initialState = {
     fetching: false,
     fetched: false,
     artists: null,
-    error: null
+    error: null,
+    term: '',
 };
 
 const restApiArtistsReducer = (state = initialState, action) => {
     switch(action.type) {
     case 'FETCH_ARTISTS_START':
-        state = {...state, fetching: true};
+        state = {...state, fetching: true, term: action.payload.term};
         break;
     case 'FETCH_ARTISTS_ERROR':
         state = {...state, fetching: false, error: action.payload};
@@ -18,7 +19,7 @@ const restApiArtistsReducer = (state = initialState, action) => {
             ...state,
             fetching: false,
             fetched: true,
-            artists: action.payload
+            artists: action.payload,
         };
         break;
     }

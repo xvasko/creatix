@@ -21,13 +21,13 @@ class App extends React.Component {
                         ()=><LikedAlbums
                             likedAlbumsIds={this.props.likedAlbumsReducer.likedAlbumsIds}
                             getLikedAlbums={this.props.getLikedAlbums}
-                            albums={this.props.albumsReducer.albums}
+                            albumsReducer={this.props.albumsReducer}
                         />}
                     />
                     <Route path={'/search'} render={
                         ()=><Search
-                            artists={this.props.artistsReducer.artists}
-                            albums={this.props.albumsReducer.albums}
+                            artistsReducer={this.props.artistsReducer}
+                            albumsReducer={this.props.albumsReducer}
                             searchArtist={this.props.searchArtist}
                             searchArtistsAlbums={this.props.searchArtistsAlbums}
                             showAlbums={this.props.showAlbums}
@@ -85,7 +85,6 @@ const mapDispatchToProps = (dispatch) => {
         dislikeAlbum: (albumId) => {
             dispatch(dislikeAlbum(albumId));
         },
-
     };
 };
 
