@@ -29,7 +29,7 @@ export class SearchAlbum extends React.Component {
                 <ul>
                     {isLoading}
                 </ul>
-                <Link to={'/'} onClick={() => this.props.showArtists(true)}>back</Link>
+                <Link to={'/'} onClick={() => this.props.showSearchArtists(true)}>back</Link>
             </div>
         );
     }

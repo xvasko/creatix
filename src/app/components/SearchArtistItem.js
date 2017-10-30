@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const SearchArtistItem = (props) => {
     return (
         <li>
-            <Link to={'search/' + props.artistName} onClick={() => props.showArtists(false, props.artistId, props.artistName)}>
+            <Link to={'search/' + props.artistName} onClick={() => props.showSearchArtists(false, props.artistId, props.artistName)}>
                 {props.artistName}
             </Link>
         </li>

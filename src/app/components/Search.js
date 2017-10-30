@@ -10,7 +10,7 @@ export class Search extends React.Component {
             return(<SearchArtist
                 artistsReducer={this.props.artistsReducer}
                 searchArtist={this.props.searchArtist}
-                showArtists={this.props.showArtists}
+                showSearchArtists={this.props.showSearchArtists}
             />);
         } else {
             return(<SearchAlbum
@@ -18,7 +18,7 @@ export class Search extends React.Component {
                 searchArtistsAlbums={this.props.searchArtistsAlbums}
                 artistId={this.props.artistId}
                 renderReducer={this.props.renderReducer}
-                showArtists={this.props.showArtists}
+                showSearchArtists={this.props.showSearchArtists}
                 likedAlbumsIds={this.props.likedAlbumsIds}
                 likeAlbum={this.props.likeAlbum} dislikeAlbum={this.props.dislikeAlbum}
             />);

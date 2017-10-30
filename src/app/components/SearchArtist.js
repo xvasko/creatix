@@ -10,7 +10,7 @@ export class SearchArtist extends React.Component {
                     key={artist.artistId}
                     artistId={artist.artistId}
                     artistName={artist.artistName}
-                    showArtists={this.props.showArtists}
+                    showSearchArtists={this.props.showSearchArtists}
                 />
             );
         }) : (<p>no artists...</p>);

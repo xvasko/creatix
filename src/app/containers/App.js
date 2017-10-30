@@ -5,7 +5,7 @@ import { LikedAlbums } from '../components/LikedAlbums';
 import { Search } from '../components/Search';
 import { searchArtist } from '../actions/restApiArtistsActions';
 import { searchArtistsAlbums, getLikedAlbums } from '../actions/restApiAlbumsActions';
-import { showArtists } from '../actions/renderActions';
+import { showSearchArtists, showLikedAlbums } from '../actions/renderActions';
 import PropTypes from 'prop-types';
 import { likeAlbum, dislikeAlbum, showAlbumDetails, hideAlbumDetails } from '../actions/albumActions';
 import { BrowserRouter } from 'react-router-dom';
@@ -13,7 +13,7 @@ import { BrowserRouter } from 'react-router-dom';
 class App extends React.Component {
     render() {
         let componentToRender;
-        if (this.props.artistsReducer.term == '') {
+        if (this.props.renderReducer.showLikedAlbums) {
             componentToRender = <LikedAlbums
                 likedAlbumsReducer={this.props.likedAlbumsReducer}
                 getLikedAlbums={this.props.getLikedAlbums}
@@ -27,7 +27,7 @@ class App extends React.Component {
                 albumsReducer={this.props.albumsReducer}
                 searchArtist={this.props.searchArtist}
                 searchArtistsAlbums={this.props.searchArtistsAlbums}
-                showArtists={this.props.showArtists}
+                showSearchArtists={this.props.showSearchArtists}
                 renderReducer={this.props.renderReducer}
                 artistId={this.props.renderReducer.artistId}
                 likedAlbumsIds={this.props.likedAlbumsReducer.likedAlbumsIds}
@@ -40,7 +40,10 @@ class App extends React.Component {
                 <div>
                     <Header
                         artistsReducer={this.props.artistsReducer}
+                        renderReducer={this.props.renderReducer}
+                        showLikedAlbums={this.props.showLikedAlbums}
                         searchArtist={this.props.searchArtist}
+                        showSearchArtists={this.props.showSearchArtists}
                     />
                     {componentToRender}
                 </div>
@@ -52,7 +55,8 @@ class App extends React.Component {
 App.propTypes = {
     searchArtist: PropTypes.func,
     searchArtistsAlbums: PropTypes.func,
-    showArtists: PropTypes.func,
+    showSearchArtists: PropTypes.func,
+    showLikedAlbums: PropTypes.func,
     likeAlbum: PropTypes.func,
     dislikeAlbum: PropTypes.func,
     getLikedAlbums: PropTypes.func,
@@ -84,8 +88,11 @@ const mapDispatchToProps = (dispatch) => {
         searchArtistsAlbums: (artistId) => {
             dispatch(searchArtistsAlbums(artistId));
         },
-        showArtists: (isShowing, artistId, artistName) => {
-            dispatch(showArtists(isShowing, artistId, artistName));
+        showSearchArtists: (isShowing, artistId, artistName) => {
+            dispatch(showSearchArtists(isShowing, artistId, artistName));
+        },
+        showLikedAlbums: (show) => {
+            dispatch(showLikedAlbums(show));
         },
         likeAlbum: (albumId) => {
             dispatch(likeAlbum(albumId));
