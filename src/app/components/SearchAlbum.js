@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export class SearchAlbum extends React.Component {
     componentWillMount() {
-        this.props.searchArtistsAlbums(this.props.searchReducer.artistId);
+        this.props.searchArtistsAlbums(this.props.renderReducer.artistId);
     }
 
     render () {
@@ -29,7 +29,7 @@ export class SearchAlbum extends React.Component {
                 <ul>
                     {isLoading}
                 </ul>
-                <Link to={'/'} onClick={() => this.props.showAlbums(false)}>back</Link>
+                <Link to={'/'} onClick={() => this.props.showArtists(true)}>back</Link>
             </div>
         );
     }

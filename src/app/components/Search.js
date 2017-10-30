@@ -2,23 +2,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { SearchArtist } from './SearchArtist';
-import { SearchAlbum} from './SearchAlbum';
+import { SearchAlbum } from './SearchAlbum';
 
 export class Search extends React.Component {
     render() {
-        if (!this.props.searchReducer.isShowingAlbums) {
+        if (this.props.renderReducer.showSearchArtists) {
             return(<SearchArtist
                 artistsReducer={this.props.artistsReducer}
                 searchArtist={this.props.searchArtist}
-                showAlbums={this.props.showAlbums}
+                showArtists={this.props.showArtists}
             />);
         } else {
             return(<SearchAlbum
                 albumsReducer={this.props.albumsReducer}
                 searchArtistsAlbums={this.props.searchArtistsAlbums}
                 artistId={this.props.artistId}
-                searchReducer={this.props.searchReducer}
-                showAlbums={this.props.showAlbums}
+                renderReducer={this.props.renderReducer}
+                showArtists={this.props.showArtists}
                 likedAlbumsIds={this.props.likedAlbumsIds}
                 likeAlbum={this.props.likeAlbum} dislikeAlbum={this.props.dislikeAlbum}
             />);

@@ -1,15 +1,14 @@
 const initialState = {
-    isShowingAlbums: false,
+    showSearchArtists: true,
     artistId: null,
     artistName: null
 };
 
-const searchReducer = (state = initialState, action) => {
+const renderReducer = (state = initialState, action) => {
     switch(action.type) {
-    case 'SET_SHOWING_ARTIST':
+    case 'SET_SEARCH_SHOW_ARTIST':
         state = {
-            ...state,
-            isShowingAlbums: action.payload.isShowingAlbums,
+            showSearchArtists: action.payload.showSearchArtists,
             artistId: action.payload.artistId,
             artistName: action.payload.artistName,
         };
@@ -18,4 +17,4 @@ const searchReducer = (state = initialState, action) => {
     return state;
 };
 
-export default searchReducer;
+export default renderReducer;
