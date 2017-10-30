@@ -23,6 +23,7 @@ class App extends React.Component {
                             getLikedAlbums={this.props.getLikedAlbums}
                             albumsReducer={this.props.albumsReducer}
                             showAlbumDetails={this.props.showAlbumDetails} hideAlbumDetails={this.props.hideAlbumDetails}
+                            dislikeAlbum={this.props.dislikeAlbum}
                         />}
                     />
                     <Route path={'/search'} render={

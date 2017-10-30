@@ -5,7 +5,7 @@ export class LikedAlbumsItem extends React.Component {
     render() {
         return (
             <li>
-                <p>
+                <p><img src={this.props.albumCover} alt="album_cover"/> {' '}
                     <strong>{this.props.albumName}</strong> {' '}
                     {this.props.artistName} {' '}
                     <a href="#" onClick={() => this.props.showAlbumDetails(this.props.albumId)}>{'see'}</a>

@@ -1,5 +1,5 @@
 const initialState = {
-    likedAlbumsIds: [],
+    likedAlbumsIds: localStorage.getItem('likedAlbumsIds') ? JSON.parse(localStorage.getItem('likedAlbumsIds')) : [],
     showAlbumDetails: null,
 };
 
