@@ -12,7 +12,10 @@ export class SearchAlbumItem extends React.Component {
         return (
             <li>
                 {this.props.albumId}: {this.props.albumName} {' '}
-                <a href="#" onClick={() => toggleLike.func(this.props.albumId)}>{toggleLike.text}</a>
+                <a href='' onClick={(e) => {
+                    e.preventDefault();
+                    toggleLike.func(this.props.albumId);
+                }}>{toggleLike.text}</a>
             </li>
         );
     }

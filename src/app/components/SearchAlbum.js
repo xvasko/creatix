@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { SearchAlbumItem } from './SearchAlbumItem';
+import { Link } from 'react-router-dom';
 
 export class SearchAlbum extends React.Component {
     componentWillMount() {
@@ -28,7 +29,7 @@ export class SearchAlbum extends React.Component {
                 <ul>
                     {isLoading}
                 </ul>
-                <a href='#' onClick={() => this.props.showAlbums(false)}>back</a>
+                <Link to={'/'} onClick={() => this.props.showAlbums(false)}>back</Link>
             </div>
         );
     }

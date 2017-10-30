@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const SearchArtistItem = (props) => {
     return (
         <li>
-            <a href="#" onClick={() => props.showAlbums(true, props.artistId, props.artistName)}>
+            <Link to={'search/' + props.artistName} onClick={() => props.showAlbums(true, props.artistId, props.artistName)}>
                 {props.artistName}
-            </a>
+            </Link>
         </li>
     );
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Header } from '../components/Header';
-import { BrowserRouter, Route } from 'react-router-dom';
 import { LikedAlbums } from '../components/LikedAlbums';
 import { Search } from '../components/Search';
 import { searchArtist } from '../actions/restApiArtistsActions';
@@ -9,36 +8,41 @@ import { searchArtistsAlbums, getLikedAlbums } from '../actions/restApiAlbumsAct
 import { showAlbums } from '../actions/searchActions';
 import PropTypes from 'prop-types';
 import { likeAlbum, dislikeAlbum, showAlbumDetails, hideAlbumDetails } from '../actions/albumActions';
+import { BrowserRouter } from 'react-router-dom';
 
 class App extends React.Component {
     render() {
+        let componentToRender;
+        if (this.props.artistsReducer.term == '') {
+            componentToRender = <LikedAlbums
+                likedAlbumsReducer={this.props.likedAlbumsReducer}
+                getLikedAlbums={this.props.getLikedAlbums}
+                albumsReducer={this.props.albumsReducer}
+                showAlbumDetails={this.props.showAlbumDetails} hideAlbumDetails={this.props.hideAlbumDetails}
+                dislikeAlbum={this.props.dislikeAlbum}
+            />;
+        } else {
+            componentToRender = <Search
+                artistsReducer={this.props.artistsReducer}
+                albumsReducer={this.props.albumsReducer}
+                searchArtist={this.props.searchArtist}
+                searchArtistsAlbums={this.props.searchArtistsAlbums}
+                showAlbums={this.props.showAlbums}
+                searchReducer={this.props.searchReducer}
+                artistId={this.props.searchReducer.artistId}
+                likedAlbumsIds={this.props.likedAlbumsReducer.likedAlbumsIds}
+                likeAlbum={this.props.likeAlbum} dislikeAlbum={this.props.dislikeAlbum}
+            />;
+        }
+
         return (
             <BrowserRouter>
                 <div>
-                    <Header/>
-                    {/*<Route exact path={'/'} component={LikedAlbums}/>*/}
-                    <Route path={'/likedalbums'} render={
-                        ()=><LikedAlbums
-                            likedAlbumsReducer={this.props.likedAlbumsReducer}
-                            getLikedAlbums={this.props.getLikedAlbums}
-                            albumsReducer={this.props.albumsReducer}
-                            showAlbumDetails={this.props.showAlbumDetails} hideAlbumDetails={this.props.hideAlbumDetails}
-                            dislikeAlbum={this.props.dislikeAlbum}
-                        />}
+                    <Header
+                        artistsReducer={this.props.artistsReducer}
+                        searchArtist={this.props.searchArtist}
                     />
-                    <Route path={'/search'} render={
-                        ()=><Search
-                            artistsReducer={this.props.artistsReducer}
-                            albumsReducer={this.props.albumsReducer}
-                            searchArtist={this.props.searchArtist}
-                            searchArtistsAlbums={this.props.searchArtistsAlbums}
-                            showAlbums={this.props.showAlbums}
-                            searchReducer={this.props.searchReducer}
-                            artistId={this.props.searchReducer.artistId}
-                            likedAlbumsIds={this.props.likedAlbumsReducer.likedAlbumsIds}
-                            likeAlbum={this.props.likeAlbum} dislikeAlbum={this.props.dislikeAlbum}
-                        />
-                    }/>
+                    {componentToRender}
                 </div>
             </BrowserRouter>
         );

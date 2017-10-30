@@ -18,12 +18,7 @@ export class SearchArtist extends React.Component {
         return (
             <div>
                 <h1>SEARCH ARTIST COMPONENT</h1>
-                <label>
-                    <input type="text" name="name"
-                        value={this.props.artistsReducer.term}
-                        onChange={(e) => this.props.searchArtist(e.target.value)}
-                    />
-                </label>
+
                 <ul>
                     {searchArtistItems}
                 </ul>
