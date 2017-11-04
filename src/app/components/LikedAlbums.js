@@ -2,6 +2,7 @@
 import React from 'react';
 import { LikedAlbumsItem } from './LikedAlbumsItem';
 import { AlbumDetails } from './AlbumDetails';
+import { Ul } from './LikedAlbums.styles';
 
 export class LikedAlbums extends React.Component {
     componentWillMount() {
@@ -36,12 +37,11 @@ export class LikedAlbums extends React.Component {
                 );
             } else {
                 return (
-                    <div>
-                        <h1>LIKED ALBUMS COMPONENT</h1>
-                        <ul>
-                            {likedAlbums}
-                        </ul>
-                    </div>
+
+                    <Ul>
+                        {likedAlbums}
+                    </Ul>
+
                 );
             }
         }

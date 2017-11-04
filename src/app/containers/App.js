@@ -9,6 +9,7 @@ import { showSearchArtists, showLikedAlbums } from '../actions/renderActions';
 import PropTypes from 'prop-types';
 import { likeAlbum, dislikeAlbum, showAlbumDetails, hideAlbumDetails } from '../actions/albumActions';
 import { BrowserRouter } from 'react-router-dom';
+import { Container } from './App.styles';
 
 class App extends React.Component {
     render() {
@@ -37,16 +38,17 @@ class App extends React.Component {
 
         return (
             <BrowserRouter>
-                <div>
+                <Container>
                     <Header
                         artistsReducer={this.props.artistsReducer}
                         renderReducer={this.props.renderReducer}
                         showLikedAlbums={this.props.showLikedAlbums}
                         searchArtist={this.props.searchArtist}
                         showSearchArtists={this.props.showSearchArtists}
+                        hideAlbumDetails={this.props.hideAlbumDetails}
                     />
                     {componentToRender}
-                </div>
+                </Container>
             </BrowserRouter>
         );
     }

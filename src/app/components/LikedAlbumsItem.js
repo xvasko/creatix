@@ -6,11 +6,12 @@ export class LikedAlbumsItem extends React.Component {
     render() {
         return (
             <li>
-                <p><img src={this.props.albumCover} alt="album_cover"/> {' '}
-                    <strong>{this.props.albumName}</strong> {' '}
+                <img src={this.props.albumCover} alt="album_cover"/>
+                <span>
+                    <strong>{this.props.albumName}</strong> {'   '}
                     {this.props.artistName} {' '}
                     <Link to={this.props.artistName} onClick={() => this.props.showAlbumDetails(this.props.albumId)}>{'see'}</Link>
-                </p>
+                </span>
             </li>
         );
     }
