@@ -24,7 +24,6 @@ export class SearchAlbum extends React.Component {
 
         let isLoading = !this.props.albumsReducer.fetching ?
             <Div>
-                <H2>{this.props.albumsReducer.albums.results[0]['artistName']}</H2>
                 <Ul>{searchAlbumItems}</Ul>
                 <Link to={'/'} onClick={() => this.props.showSearchArtists(true)}>back</Link>
             </Div> : <H2>Loading...</H2>;

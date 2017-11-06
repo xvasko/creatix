@@ -21,7 +21,7 @@ export class LikedAlbums extends React.Component {
                     showAlbumDetails={this.props.showAlbumDetails}
                 />
             );
-        }) : (<p>you have no liked albums...</p>);
+        }) : (<H2>you have no liked albums...</H2>);
 
         if(this.props.albumsReducer.fetching) {
             return (<H2>Loading...</H2>);
