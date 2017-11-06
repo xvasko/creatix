@@ -2,7 +2,7 @@
 import React from 'react';
 import { LikedAlbumsItem } from './LikedAlbumsItem';
 import { AlbumDetails } from './AlbumDetails';
-import { Ul } from './LikedAlbums.styles';
+import { H2, Ul } from './LikedAlbums.styles';
 
 export class LikedAlbums extends React.Component {
     componentWillMount() {
@@ -24,7 +24,7 @@ export class LikedAlbums extends React.Component {
         }) : (<p>you have no liked albums...</p>);
 
         if(this.props.albumsReducer.fetching) {
-            return (<h2>Loading...</h2>);
+            return (<H2>Loading...</H2>);
         } else {
             if(this.props.likedAlbumsReducer.showAlbumDetails) {
                 return (

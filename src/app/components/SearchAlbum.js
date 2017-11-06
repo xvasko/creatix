@@ -2,6 +2,7 @@
 import React from 'react';
 import { SearchAlbumItem } from './SearchAlbumItem';
 import { Link } from 'react-router-dom';
+import { Div, H2, Ul } from './SearchAlbum.styles';
 
 export class SearchAlbum extends React.Component {
     componentWillMount() {
@@ -21,15 +22,16 @@ export class SearchAlbum extends React.Component {
             );
         }) : (<p>no albums...</p>);
 
-        let isLoading = !this.props.albumsReducer.fetching ? <ul>{searchAlbumItems}</ul> : <h2>Loading...</h2>;
+        let isLoading = !this.props.albumsReducer.fetching ?
+            <Div>
+                <H2>{this.props.albumsReducer.albums.results[0]['artistName']}</H2>
+                <Ul>{searchAlbumItems}</Ul>
+                <Link to={'/'} onClick={() => this.props.showSearchArtists(true)}>back</Link>
+            </Div> : <H2>Loading...</H2>;
 
         return (
             <div>
-                <h1>SEARCH ALBUM COMPONENT</h1>
-                <ul>
-                    {isLoading}
-                </ul>
-                <Link to={'/'} onClick={() => this.props.showSearchArtists(true)}>back</Link>
+                {isLoading}
             </div>
         );
     }

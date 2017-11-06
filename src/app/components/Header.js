@@ -12,7 +12,8 @@ export class Header extends React.Component {
                     this.props.hideAlbumDetails();
                 }}>Liked Albums</Link>
                 <label>
-                    <input type="text" name="name"
+                    <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    <input type="text" name="name" placeholder="search"
                         value={this.props.artistsReducer.term}
                         onChange={(e) => {
                             this.props.searchArtist(e.target.value);

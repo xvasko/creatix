@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { SearchArtistItem } from './SearchArtistItem';
+import { Ul } from './SearchArtist.styles';
 
 export class SearchArtist extends React.Component {
     render() {
@@ -16,13 +17,9 @@ export class SearchArtist extends React.Component {
         }) : (<p>no artists...</p>);
 
         return (
-            <div>
-                <h1>SEARCH ARTIST COMPONENT</h1>
-
-                <ul>
-                    {searchArtistItems}
-                </ul>
-            </div>
+            <Ul>
+                {searchArtistItems}
+            </Ul>
         );
     }
 }
